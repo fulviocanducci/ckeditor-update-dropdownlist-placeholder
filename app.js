@@ -65,6 +65,7 @@ class PlaceholderUI extends Plugin {
     const editor = this.editor;
     const t = editor.t;
     const placeholderNames = editor.config.get("placeholderConfig.types");
+    const placeholderLabel = editor.config.get("placeholderLabel");
 
     // The "placeholder" dropdown must be registered among the UI components of the editor
     // to be displayed in the toolbar.
@@ -80,7 +81,7 @@ class PlaceholderUI extends Plugin {
       dropdownView.buttonView.set({
         // The t() function helps localize the editor. All strings enclosed in t() can be
         // translated and change when the language of the editor changes.
-        label: t("Placeholder"),
+        label: t(placeholderLabel),
         tooltip: true,
         withText: true,
       });
@@ -145,6 +146,7 @@ class PlaceholderEditing extends Plugin {
     this.editor.config.define("placeholderConfig", {
       types: ["date", "first name", "surname"],
     });
+    this.editor.config.define("placeholderLabel", "Placeholder");
   }
 
   _defineSchema() {
@@ -227,10 +229,10 @@ class PlaceholderEditing extends Plugin {
 }
 
 class editor {
-  static show(name, types = []) {
-    return new editor(name, types);
+  static show(name, types = [], label = "Placeholder") {
+    return new editor(name, types, label);
   }
-  constructor(name, types = []) {
+  constructor(name, types = [], label = "Placeholder") {
     ClassicEditor.create(document.querySelector(name), {
       plugins: [
         Essentials,
@@ -254,6 +256,7 @@ class editor {
       placeholderConfig: {
         types: types,
       },
+      placeholderLabel: label,
     })
       .then((editor) => {
         console.log("Editor was initialized", editor);
