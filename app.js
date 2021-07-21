@@ -5,6 +5,7 @@ import Heading from "@ckeditor/ckeditor5-heading/src/heading";
 import List from "@ckeditor/ckeditor5-list/src/list";
 import Bold from "@ckeditor/ckeditor5-basic-styles/src/bold";
 import Italic from "@ckeditor/ckeditor5-basic-styles/src/italic";
+import Alignment from "@ckeditor/ckeditor5-alignment/src/alignment";
 
 import Plugin from "@ckeditor/ckeditor5-core/src/plugin";
 import {
@@ -242,6 +243,7 @@ class editor {
         Bold,
         Italic,
         Placeholder,
+        Alignment,
       ],
       toolbar: [
         "heading",
@@ -250,6 +252,8 @@ class editor {
         "italic",
         "numberedList",
         "bulletedList",
+        "|",
+        "alignment",
         "|",
         "placeholder",
       ],
